@@ -1,0 +1,67 @@
+/* Design a class batsman where it can be used for maintaining the information about the player. The details can be
+Name, innings played, not outs, runs. Using these details you should be able to calculate the batting
+average(runs/(innings -not out)), apart from this you should design the class in such a way so that the user should be
+able to add the data by themselves for number of batman’s that they will mention during the runtime and along with
+that the data should be displayed on console on demand
+Author:Shivani_Teli
+ */
+
+#include<iostream>
+using namespace std;
+class batsman
+{
+	int bcode;
+	char bname[20];
+	int innings,notout,runs;
+	int batavg;
+	void calcavg()
+	{
+		batavg=runs/(innings-notout);
+	}
+public :
+	void readdata ();
+	void displaydata();
+};
+void batsman::readdata ()
+{
+  cout<<"BATSMAN DETAILS\n";
+  cout<<"**************=========**************\n";
+	cout<<"Enter batsman code:- ";
+	cin>> bcode;
+	cout<<"Enter batsman name:- ";
+	cin>>bname;
+	cout<<"Enter innings played by players:-";
+  cin>>innings;
+  cout<<"Enter not out of player:- ";
+  cin>>notout;
+  cout<<"Enter runs of a player:- ";
+  cin>>runs;
+
+	calcavg();
+}
+
+void batsman::displaydata()
+{
+  cout<<"**************=========**************\n";
+	cout<<"Batsman code:- "<<bcode<<"\nBatsman name:- "<<bname<<"\nInnings played by player:- "<<innings
+	<<"\nNot out of player "<<notout<<"\nRuns of a player:-"<<runs<<"\nBatting Average of player:- "<<batavg<<"\n";
+}
+int main()
+{
+  int x;
+  
+  batsman obj;
+  int n=1;
+  do
+  {
+  obj.readdata();
+	obj.displaydata();
+  cout<<"**************=========**************\n";
+  cout<<"\nWant  more information about players?\nClick '1' for yes \nClick '0' for no\n";
+   cin>>x;
+   
+  }while(x==1);
+  
+ 
+	return 0;
+}

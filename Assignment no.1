@@ -1,0 +1,36 @@
+/* Write a program that reads a character, an integer, and a floating point number and print each on a separate line. Be sure to provide complete instructions for the user on the command prompt. 
+Author Shivani_Teli
+*/
+
+
+//the preprocessor segment including the required files during the compilatuion
+#include <iostream>
+//additional namespaces requiured
+using namespace std;
+//Main Driving code
+int main() 
+{
+  //user instructions for input
+  //Integer value
+  int a;
+  //Floating Value
+  float b;
+  //Character value
+  char ch;
+  cout<<"enter the integer value:";
+  //Accepting user input for integer value
+  cin>>a;
+  cout<<"enter the float value:";
+  //Accepting user input for float value
+  cin>>b;
+  cout<<"enter the character value:";
+  //Accepting user input for character value
+  cin>>ch;
+  cout<<"\n";
+  //Displaying integer value and its size
+  cout<<"The interger value is:\t"<<a<<"\n"<<"the size of integer value is:"<<sizeof(a)<<"\n\n";
+  //Displaying float value and its size
+  cout<<"The float value is:\t"<<b<<"\n"<<"the size of float value is:"<<sizeof(b)<<"\n\n";
+  //Displaying Character value and its size
+  cout<<"The character value is:\t"<<ch<<"\n"<<"the size of chracter is:"<<sizeof(ch)<<"\n\n";
+}

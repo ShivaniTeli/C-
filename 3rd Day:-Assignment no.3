@@ -1,0 +1,172 @@
+/* Create two set of classes where the first class object allows you to stores the value of distance in meters and
+centimetres. And the second class object stores the distance in feet and inches. Design a program in such a way so
+that it can read values of both the class objects and add object of first with the second. And the final output
+displayed should be in the feet and inches OR metres and centimetres.
+Hint: You may use the friend function to carry out the addition operation
+Note: you may also refer to the practice code uploaded on the drive.
+Author:-Shivani_Teli
+*/
+
+
+#include<iostream>
+
+//using namespace std to tell compiler scope of std
+using namespace std;
+
+//Class Person is declared
+class Person	{
+
+  public:
+  //Members are declared public as used for comparing in main function
+    char *PersonName;
+    int *date,*month,*year;	
+    int years,months,days;
+
+    //constructor is declared
+   Person()	{
+    PersonName= new char[30];
+    date=new int;
+    month=new int;
+    year=new int;
+    }
+
+    //All Member functions are declared
+    void takedata();
+    void showdata();
+
+    //function is declared to calaculate age
+    void calculateage(){
+    // days of every month
+    int mon[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    int currentDate=7,currentMonth=10,currentYear=2021;
+ 
+    // if birth date is greater then current birth date then do not count this month and add 30 to the date so as to subtract the date and get the remaining days
+
+    if (*date > currentDate) {
+        currentDate = currentDate + mon[*month - 1];
+        currentMonth = currentMonth - 1;
+    }
+ 
+    // if birth month exceeds current month, then do not count this year and add 12 to the month so that we can subtract and find out the difference
+    if (*month > currentMonth) {
+        currentYear = currentYear - 1;
+        currentMonth = currentMonth + 12;
+    }
+ 
+    // calculate date, month, year
+    days = currentDate - *date;
+    months = currentMonth - *month;
+    years = currentYear - *year;
+ 
+    // print the present age
+    cout<<'\n'<<PersonName<<" is " <<years<<" Years "<<months<<" Months "<<days<<" Days old"<<endl;
+}
+
+};
+
+//defined to feed/enter Person information in the system
+void Person::takedata()	{
+	cin.ignore();
+	cout<<"\nEnter Person Name: ";      
+  cin.getline(PersonName,30);
+  cout<<"Enter Birth date: ";
+	cin>>*date;
+  cout<<"Enter Birth month: ";   
+  cin>>*month; 
+  cout<<"Enter Birth year: ";   
+  cin>>*year; 
+	
+}
+
+//defined to display Person information 
+void Person::showdata()	{
+	cout<<"\nPerson name: "<<PersonName;
+	cout<<"\nBirth date: "<<*date;
+	cout<<"\nBirth Month: "<<*month;
+  cout<<"\nBirth year: "<<*year;
+  calculateage();
+	
+}
+
+int main()	{
+
+  //size represents number of persons whose information needs to be entered which would be asked from the user
+  int size;
+  cout<<"Enter the number of persons out there: ";
+  cin>>size;
+
+  //Class Object is declared as array 
+	Person *people[size];
+
+  //variable i maintains the count of entries
+	int i=0;
+
+	while(i<size)	{
+    people[i] = new Person;
+    people[i]->takedata();
+    i++;	
+  }
+
+  //entered information is displayed using loop
+  for(int j=0;j<size;j++){
+    people[j]->showdata();
+  }
+  
+
+  
+   int maxAge= people[0]->years; //pointing to the zeroth index info of people oblect
+   
+   //countMaxAge and countMinAge maintains the count in case multiple people are of same age group
+   int maxindex[size],minindex[size],countMaxAge=0,countMinAge=0;
+
+    //to find max age
+    for (int k=0; k < size; k++)
+    {
+        if (maxAge < people[k]->years){
+          maxAge = people[k]->years;
+        }
+    }
+
+    //to find min age
+    int minAge=people[0]->years;
+    for (int k = 1; k < size; k++)
+    {
+        if (minAge > people[k]->years){
+            minAge = people[k]->years;
+        }
+    }
+
+    //counting the multiple max ages and indexes are maintained in maxindex
+    for(int k=0;k<size;k++){
+      if(people[k]->years==maxAge){
+        countMaxAge+=1;
+        maxindex[countMaxAge-1]=k;
+      }
+    }
+
+    //counting the multiple min ages and indexes are maintained in minindex
+    for(int k=0;k<size;k++){
+      if(people[k]->years==minAge){
+        countMinAge+=1;
+        minindex[countMinAge-1]=k;
+      }
+    }
+
+    //condition check wheather all members are of same age or not If yes, go to else part otherwise print the eldest and youngest people's name
+    if(countMaxAge!=size || countMinAge!=size){
+    cout<<"\n\nEldest among "<<size<<" people are :"<<endl;
+    for(int k=0;k<countMaxAge;k++){
+      cout <<people[maxindex[k]]->PersonName<<endl;
+      }
+    
+    cout<<"\n\nYoungest among "<<size<<" people are :"<<endl;
+    
+    for(int l=0;l<countMinAge;l++){
+        cout <<people[minindex[l]]->PersonName<<endl;
+      }
+    }
+    else
+      cout<<"\n\nAll people are of same age";
+      
+	return 0;
+}

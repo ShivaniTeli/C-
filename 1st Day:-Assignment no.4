@@ -1,0 +1,58 @@
+/* Write a program to create a customer's bill for a company. The company sells only five different products: TV, VCR, Remote controller, CD player and the tape recorder. The unit price is $400, $220, $35.20, $300 and $150 respectively. The program must read the quantity of each piece of equipment purchased from the keyboard. It then calculates the cost of each item, the sub total and the total cost after an 8.25% sales tax.
+Author:Shivani_Teli
+*/
+#include <iostream>
+using namespace std;
+ 
+int main() {
+  	
+ 	const float tax = 8.25;
+	const float TV_price = 400.00;
+	const float VCR_price = 220.00;
+	const float Remote_Controller_price = 35.20;
+	const float CD_Player_price = 300.00; 
+	const float Tape_Recorder_price = 150.00;
+   	
+    int TV, VCR, Remote_Controller, CD_Player, Tape_Recorder;
+    float price, subtotal, total, extTV=0, extVCR=0, extRemote_Controller=0, extCD_Player=0, extTape_Recorder=0, tax_deduct;
+      
+    cout << "How Many TVs Were Sold?: ";
+    cin >> TV;
+      
+    cout << "How Many VCRs Were Sold?: ";
+    cin >> VCR;
+      
+    cout << "How Many Remote Controllers Were Sold?: ";
+    cin >> Remote_Controller;
+      
+    cout << "How Many Cd Players Were Sold?: ";
+    cin >> CD_Player;
+      
+    cout << "How Many Tape Recorders Were Sold?: ";
+    cin >> Tape_Recorder;
+      
+      
+   	extTV = TV * TV_price;
+    extVCR = VCR * VCR_price;
+    extRemote_Controller = Remote_Controller * Remote_Controller_price;
+    extCD_Player = CD_Player * CD_Player_price;
+    extTape_Recorder = Tape_Recorder * Tape_Recorder_price;
+   
+    subtotal = extTV + extVCR +extRemote_Controller +extCD_Player + extTape_Recorder ;   
+    tax_deduct= tax*subtotal;
+    total = subtotal + tax_deduct;
+        
+    cout << "\n QTY          DESCRIPTION       UNIT PRICE       TOTAL PRICE ";
+    cout << "\n ===          ===========      ==========        =========== ";
+     
+    cout << "\n"<<TV <<"\t\t     TV                400.00 "   <<"\t\t\t" << extTV<<"     ";
+    cout << "\n"<<VCR <<"\t\t     VCR               220.00 "   <<"\t\t\t" <<extVCR <<"     ";
+    cout << "\n"<<Remote_Controller <<"\t\t     Remote Controller   35.20 "<<"\t\t\t"<< extRemote_Controller<<"     ";
+    cout << "\n"<< CD_Player<<"\t\t     CD PLayer          300.00"   <<"\t\t\t" <<extCD_Player<<"     ";
+    cout << "\n"<< Tape_Recorder<<"\t\t     Tape Recorder      150.00 "<<"\t\t\t" <<extTape_Recorder <<"     ";
+      
+    cout << "\n --------------------------------------------------------------  " ;            
+    cout << "\n                                 SUBTOTAL     "<< subtotal<<"        ";                      cout << "\n                                 TAX         "<< tax_deduct<<"        ";
+    cout << "\n                                 TOTAL       "<< total<<"        ";  
+	return 0;
+}

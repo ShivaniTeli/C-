@@ -1,0 +1,78 @@
+/* Design a class student with the where you the details about the academics is required to be maintained and you may
+use following tentative(you may improve on same) specifications as mentioned:
+Private members of class student
+Variables: Admission number, Student name, Subject marks(English, maths, science), total marks
+Functions: calculatetotal() where the total subject marks as well as percentage can be calculated.
+Public member function of class student
+Takedata(): for user inputs
+Showdata():to display all the data on the screen.
+The number of students will be entered by the user itself and you may maintain an array of object for same.*/
+
+//Author Shivani_Teli
+ 
+#include <iostream>
+using namespace std;
+ 
+#define MAX 100
+ 
+class student
+{
+private:
+        char  name[30];
+        int   adminNo;
+        int   m1,m2,m3,total;
+        float perc;
+public:
+        //member function to get student's details
+        void takeData(void);
+        //member function to print student's details
+        void showdata(void);
+};
+ 
+//member function definition, outside of the class
+void student::takeData(void){
+  cout<<"";
+    cout << "Enter name: " ;
+    cin >> name;
+    cout << "Enter admission number: ";
+    cin >> adminNo;
+    cout << "Enter English Marks: ";
+    cin >> m1;
+    cout<<"Enter Maths Marks:";
+    cin>>m2;
+    cout<<"Enter Science marks:";
+    cin>>m3;
+    total=m1+m2+m3;
+     
+    perc=(float)total/300*100;
+}
+ 
+//member function definition, outside of the class
+void student::showdata(void){
+  cout<<"*********=======**********";
+    cout << "\nStudent details:\n";
+    cout << "Name:"<< name <<"\n"<< "Admission Number:" << adminNo <<"\n"<< "Total:" << total <<"\n"<< "Percentage:" << perc<<"\n";
+}
+ 
+int main()
+{
+    student std[MAX];       //array of objects creation
+    int n,loop;
+     
+    cout << "Enter total number of students: ";
+    cin >> n;
+     
+    for(loop=0;loop< n; loop++){
+        cout << "Enter details of student " << loop+1 << ":\n";
+        std[loop].takeData();
+    }
+     
+    cout << endl;
+     
+    for(loop=0;loop< n; loop++){
+        cout << "Details of student " << (loop+1) << ":\n";
+        std[loop].showdata();
+    }
+     
+    return 0;
+}

@@ -1,0 +1,109 @@
+/* Design a class to represent a bank account, where following details can be maintained: 
+Depositor name, 
+account number(you may define any starting number), 
+type of account(current/saving), 
+balance amount in the account. 
+Author:-Shivani_Teli
+ */
+
+//the preprocessor segment including the required files during the compilatuion
+#include <iostream>
+////the preprocessor segment including the required files for string operations
+#include<cstring>
+//additional namespaces requiured
+using namespace std;
+ class Bank
+ {
+   public:
+    
+    char name[50];//boundary condition of the name is 49 characters 
+    int acc_no;
+    char acc_type;// boundary one char ,,,'s' ,'c'
+    float balance;
+ 
+//Function to accept information from user
+ void get()
+ {
+   cout<<"\nEnter your name\n";
+   cin>>name;
+   cout<<"\nEnter your account number\n";
+   cin>>acc_no;
+   cout<<"\nEnter Account type\n'S' for savings account\n'C' for current account\n";
+   cin>>acc_type;
+   if((acc_type=='S')||(acc_type=='C')||(acc_type=='s')||(acc_type=='c'))
+   {//checking if its savings account or current account
+   cout<<"\nEnter account balance\n";
+   cin>>balance;
+   }
+   else 
+   {//if not both,will go back to the beginning
+     cout<<"Please select available account type"<<endl;
+     get();
+   }
+
+ }
+ //function for deposit amount
+ void deposit()
+ {
+   int amt;
+   cout<<"\nEnter amount to deposit\n";
+   cin>>amt;
+   balance=balance+amt;
+   cout<<"\nAmount deposited successfuly\nYour New Balance:"<<balance;
+
+ }
+//function for withdraw amount from
+ void withdraw()
+ {
+   int amt;
+   cout<<"\nYour balance is : "<<balance;
+   cout<<"\nEnter amount you wanna withdraw\n";
+   cin>>amt;
+   if(amt<=balance)
+   {
+     balance=balance-amt;
+     cout<<"\nCurrent Balance : "<<balance;
+   }
+   else
+   {
+     cout<<"You cannot withdraw amount more than your balance\n";
+     exit(0);
+   }
+ }
+
+ void show()
+ {
+   cout<<"\nName :"<<name;
+   cout<<"\nYour balance : "<<balance;
+ }
+ };
+int main() {
+  int choice,x,c;
+  Bank bank;
+  while(c){
+  bank.get();
+  while(x){
+  cout<<"\nPress '1' to know your information\nPress '2' to deposit\nPress '3' to withdraw amount\n";
+  cin>>choice;
+  
+  switch(choice)
+  {
+    case 1 : bank.show();
+    break;
+
+    case 2 : bank.deposit();
+    break;
+
+    case 3 : bank.withdraw();
+    break;
+
+    default: cout<<"no such operation";
+  }
+  cout<<"\nWant do more transactions?\nClick '1' for yes \nClick '0' for no\n";
+  cin>>x;
+ }
+ cout<<"Thank You for banking with AXIS!!! ....."<<endl;
+ cout<<"click on '1' to make us of the banking system"<<endl;
+ cin>>c;
+}
+}
